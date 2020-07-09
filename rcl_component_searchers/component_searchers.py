@@ -24,9 +24,9 @@ class PyEntryPointComponentSearcher(ComponentSearcher):
         for entry_point in component_entry_points:
             component_type = str.split(entry_point.name, '::')[0].strip()
             if component_type not in components:
-                components[component_type] = [entry_point.value]
+                components[component_type] = [entry_point.name]
             else:
-                components[component_type].append(entry_point.value)
+                components[component_type].append(entry_point.name)
 
         return [('{}/{}'.format(self.component_resource_type, package_name), values)
                 for package_name, values in components.items()]
